@@ -1,0 +1,45 @@
+public class RaceCondition2 {
+
+    static int counter = 0;
+
+    public static synchronized void increment() {
+
+        for (int i = 0; i < 2_000_000; i++) {
+            counter++;
+        }
+
+        System.out.println(counter + " " + Thread.currentThread().getName());
+    }
+
+    public static void main(String[] args) {
+
+        Thread t = new Thread() {
+            public void run() {
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                increment();
+
+            }
+
+        };
+
+        Runnable t2 = new Thread() {
+            public void run() {
+                increment();
+
+            }
+
+        };
+
+        t.start();
+        t2.run();
+
+    }
+
+}
