@@ -1,0 +1,17 @@
+package week6Threads1;
+
+public class BlochingQueuePoll<E> extends Thread{
+
+
+
+    private BlockingQueue<E> queue;
+    public BlochingQueuePoll(BlockingQueue<E> queue) {
+        this.queue = queue;
+    }
+    
+    public void run() {
+        E element = this.queue.poll();
+        System.out.println(element);
+    }
+}
+
