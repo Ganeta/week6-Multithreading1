@@ -1,0 +1,16 @@
+package week6Threads1;
+
+public class BlockingQueueMain {
+
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new BlockingQueue<Integer>();
+        Integer number = 10;
+        BlochingQueuePoll<Integer> poller = new BlochingQueuePoll<Integer>(queue);
+        QueueAdd<Integer> adder = new QueueAdd<Integer>(queue, number);
+        
+        poller.start();
+        adder.start();
+
+    }
+
+}
